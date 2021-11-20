@@ -1,0 +1,1 @@
+Drawing candlesticks with grouped in 1 minute chunks. Datas are streaming from 3rd application in real-time.
