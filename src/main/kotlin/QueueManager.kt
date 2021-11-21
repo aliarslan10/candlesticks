@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue
 
 object QueueManager {
     private val msgQ = ConcurrentHashMap<String, ConcurrentLinkedQueue<SocketData>>()
-    private val KEEP_DATA_FOR_MINUTE: Int = 30
+    private const val DATA_KEEPING_MINUTE: Int = 30
 
     fun createTopic(topic: String) {
         msgQ[topic] = ConcurrentLinkedQueue()
@@ -16,16 +16,16 @@ object QueueManager {
         msgQ.remove(topic)
     }
 
-    fun getTopics(): Set<String?>? {
+    fun getTopics(): Set<String?> {
         return msgQ.keys
     }
 
     fun pushMessage(key: String, `object`: SocketData) {
         if (msgQ.containsKey(key)) {
-            for ((price, time) in msgQ[key]!!) {
+            for ((_, time) in msgQ[key]!!) {
                 val differences: Int =
                     Instant.now().atZone(ZoneOffset.UTC).minute - time.atZone(ZoneOffset.UTC).minute
-                if (differences < KEEP_DATA_FOR_MINUTE) {
+                if (differences < DATA_KEEPING_MINUTE) {
                     break
                 }
                 msgQ[key]!!.remove()

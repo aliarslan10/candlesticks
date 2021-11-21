@@ -23,8 +23,8 @@ object DependencyVersions {
 
 dependencies {
   implementation(kotlin("stdlib"))
+  implementation("junit:junit:4.13.1")
   testImplementation(kotlin("test"))
-
 
   implementation(platform("org.http4k:http4k-bom:4.13.1.0"))
   implementation("org.http4k:http4k-core")
@@ -36,6 +36,9 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${DependencyVersions.jackson}")
   implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${DependencyVersions.jackson}")
   testImplementation("io.mockk:mockk:${DependencyVersions.mockk}")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.0.3")
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
+  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.1")
 }
 
 tasks.test {
