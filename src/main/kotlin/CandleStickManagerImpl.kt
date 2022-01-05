@@ -128,13 +128,14 @@ class CandlestickManagerImpl : CandlestickManager {
    * @param candlestickArray list of the candlestick object that we create for the endpoint
     */
   private fun completeMissingCandlesticks(timeDiff: Int, candlestick: Candlestick, candlestickArray: ArrayList<Candlestick>) {
-    var minuteDifferences = timeDiff
-    var openTimestamp = candlestick.openTimestamp
-    var closeTimestamp= candlestick.closeTimestamp
-    while (minuteDifferences > 1) {
-      openTimestamp = openTimestamp.plusSeconds(60)
-      closeTimestamp= closeTimestamp.plusSeconds(60)
-      candlestickArray.add(Candlestick(openTimestamp, closeTimestamp, candlestick.openPrice, candlestick.highPrice, candlestick.lowPrice, candlestick.closingPrice))
-      minuteDifferences--
+      var minuteDifferences = timeDiff
+      var openTimestamp = candlestick.openTimestamp
+      var closeTimestamp= candlestick.closeTimestamp
+      while (minuteDifferences > 1) {
+        openTimestamp = openTimestamp.plusSeconds(60)
+        closeTimestamp= closeTimestamp.plusSeconds(60)
+        candlestickArray.add(Candlestick(openTimestamp, closeTimestamp, candlestick.openPrice, candlestick.highPrice, candlestick.lowPrice, candlestick.closingPrice))
+        minuteDifferences--
+    }
   }
 }
