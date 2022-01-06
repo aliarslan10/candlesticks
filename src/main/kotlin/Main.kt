@@ -23,7 +23,6 @@ fun main() {
    * @param InstrumentEvent coming from 3rd party application over socket it consist instrument name (isin) and description.
    */
   instrumentStream.connect { event ->
-    // TODO - implement
     if (event.type == InstrumentEvent.Type.ADD)
       QueueManager.createTopic(event.data.isin)
     if (event.type == InstrumentEvent.Type.DELETE)
@@ -46,7 +45,6 @@ fun main() {
    * @param QuoteEvent coming from 3rd party application over socket it consist instrument name (isin) and its price.
    */
   quoteStream.connect { event ->
-    // TODO - implement
     QueueManager.pushMessage(event.data.isin, SocketData(event.data.price, Instant.now()))
   }
   server.start()
