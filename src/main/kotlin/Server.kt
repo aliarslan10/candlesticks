@@ -13,7 +13,7 @@ class Server(
   port: Int = 9000,
 ) {
 
-  private lateinit var candlestickManagerService : CandlestickManagerImpl
+  private val candlestickManagerService = CandlestickManagerImpl()
 
   private val routes = routes(
     "candlesticks" bind Method.GET to { getCandlesticks(it) }
